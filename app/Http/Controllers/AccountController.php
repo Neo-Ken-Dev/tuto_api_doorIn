@@ -10,54 +10,38 @@ class AccountController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return string
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $account = Account::all();
+        return $account->toJson(JSON_PRETTY_PRINT);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        if (Account::create($request->all())) {
+            return response()->json([
+                'success' => 'Account créé avec succès'
+            ], 200);
+        };
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Account  $account
-     * @return \Illuminate\Http\Response
+     * @return Account
      */
     public function show(Account $account)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Account  $account
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Account $account)
-    {
-        //
+        return $account;
     }
 
     /**
@@ -65,21 +49,29 @@ class AccountController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Account  $account
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, Account $account)
     {
-        //
+        if ($account->update($request->all())) {
+            return response()->json([
+                'success' => 'Account modifié avec succès'
+            ], 200);
+        };
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Account  $account
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Account $account)
     {
-        //
+        if ( $account->delete()) {
+            return response()->json([
+                'success' => 'Account supprimé avec succès'
+            ], 200);
+        }
     }
 }
