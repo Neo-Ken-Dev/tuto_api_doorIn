@@ -68,6 +68,12 @@ class ImmeubleController extends Controller
      */
     public function destroy(Immeuble $immeuble)
     {
+//        $accounts = $immeuble->accounts;
+//        foreach ($accounts as $account) {
+//         $account->immeuble_id = null;
+//         $account->save();
+//        }
+
         if ( $immeuble->delete()) {
             return response()->json([
                 'success' => 'Immeuble supprimé avec succès'

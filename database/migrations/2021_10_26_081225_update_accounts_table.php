@@ -14,8 +14,8 @@ class UpdateAccountsTable extends Migration
     public function up()
     {
         Schema::table('accounts', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('immeuble_id')->constrained();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('immeuble_id')->nullable()->constrained()->onDelete('set null');
         });
     }
 
