@@ -1,4 +1,4 @@
-<?
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,6 +15,7 @@ class UpdateAccountsTable extends Migration
     {
         Schema::table('accounts', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('immeuble_id')->constrained();
         });
     }
 
@@ -28,6 +29,8 @@ class UpdateAccountsTable extends Migration
         Schema::table('accounts', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
             $table->dropColumn('user_id');
+            $table->dropForeign('immeuble_id');
+            $table->dropForeign('immeuble_id');
         });
     }
 }
