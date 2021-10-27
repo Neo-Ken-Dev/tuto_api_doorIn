@@ -26,5 +26,6 @@ $factory->define(User::class, function (Faker $faker) {
         'city' => $faker->city,
         'zipcode' => $faker->postcode,
         'country' => $faker->country,
+        'password' => bcrypt($faker->password),
     ];
 });
